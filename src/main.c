@@ -56,7 +56,9 @@ static void exampleTask(void* parameters)
 
   for (;;) {
     /* Example Task Code */
-    vTaskDelay(100); /* delay 100 ticks */
+    (void)printf("exampleTask\r\n");
+    (void)fflush(stdout);
+    vTaskDelay(1000); /* delay 100 ticks */
   }
 }
 /*-----------------------------------------------------------*/
