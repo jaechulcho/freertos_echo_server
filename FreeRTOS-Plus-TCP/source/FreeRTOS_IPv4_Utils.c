@@ -134,8 +134,8 @@ BaseType_t prvChecksumIPv4Checks( uint8_t * pucEthernetBuffer,
         if( uxBufferLength < uxNeeded )
         {
             /* The payload is longer than the packet appears to contain. */
-            pxSet->usChecksum = ipINVALID_LENGTH;
-            xReturn = 6;
+            // pxSet->usChecksum = ipINVALID_LENGTH; // josco92@outlook.com
+            // xReturn = 6;
         }
     }
 

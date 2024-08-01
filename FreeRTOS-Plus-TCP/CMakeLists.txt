@@ -158,20 +158,20 @@ endif()
 #   README.md `Consume with CMake`
 # This will allow you to upgrade submodules and have one common submodule for
 # all your builds despite multiple submodules having different versions.
-include(FetchContent)
+# include(FetchContent)
 
-FetchContent_Declare( freertos_kernel
-  GIT_REPOSITORY https://github.com/FreeRTOS/FreeRTOS-Kernel.git
-  GIT_TAG        main
-)
+# FetchContent_Declare( freertos_kernel
+#   GIT_REPOSITORY https://github.com/FreeRTOS/FreeRTOS-Kernel.git
+#   GIT_TAG        main
+# )
 
-FetchContent_Declare( cmock
-  GIT_REPOSITORY https://github.com/ThrowTheSwitch/CMock
-  GIT_TAG        v2.5.3
-)
+# FetchContent_Declare( cmock
+#   GIT_REPOSITORY https://github.com/ThrowTheSwitch/CMock
+#   GIT_TAG        v2.5.3
+# )
 
 add_subdirectory(source)
-add_subdirectory(tools)
-add_subdirectory(test)
+# add_subdirectory(tools)
+# add_subdirectory(test)
 
-FetchContent_MakeAvailable(freertos_kernel cmock)
+# FetchContent_MakeAvailable(freertos_kernel cmock)

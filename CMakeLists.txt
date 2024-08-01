@@ -65,13 +65,23 @@ target_compile_options(freertos_kernel PRIVATE
     $<$<COMPILE_LANG_AND_ID:C,Clang>:-Wno-covered-switch-default>
     $<$<COMPILE_LANG_AND_ID:C,Clang>:-Wno-cast-align> )
 
+set(FREERTOS_PLUS_TCP_NETWORK_IF "LIBSLIRP" CACHE STRING "" FORCE)
+add_subdirectory(FreeRTOS-Plus-TCP)
+
 add_executable(
     ${PROJECT_NAME}
     ${CMAKE_SOURCE_DIR}/src/main.c
+    ${CMAKE_SOURCE_DIR}/src/console.c
+    ${CMAKE_SOURCE_DIR}/src/main_networking.c
+    ${CMAKE_SOURCE_DIR}/src/runtime_stats_hooks.c
+    ${CMAKE_SOURCE_DIR}/src/SimpleTCPEchoServer.c
+    # ${CMAKE_SOURCE_DIR}/src/code_coverage_additions.c
+    ${CMAKE_SOURCE_DIR}/src/TCPEchoClient_SingleTasks.c
 )
 
 target_link_libraries(
-    ${PROJECT_NAME} 
+    ${PROJECT_NAME}
+    freertos_plus_tcp
     freertos_kernel 
     freertos_config
 )

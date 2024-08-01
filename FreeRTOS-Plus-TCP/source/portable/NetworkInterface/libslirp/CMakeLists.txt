@@ -2,9 +2,12 @@ if (NOT (FREERTOS_PLUS_TCP_NETWORK_IF STREQUAL "LIBSLIRP") )
     return()
 endif()
 
-if(NOT TARGET slirp)
-    message(FATAL_ERROR "For FREERTOS_PLUS_TCP_NETWORK_IF=LIBSLIRP must have a target for the slirp")
-endif()
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(LIBSLIRP slirp)
+
+# if(NOT TARGET slirp)
+#     message(FATAL_ERROR "For FREERTOS_PLUS_TCP_NETWORK_IF=LIBSLIRP must have a target for the slirp")
+# endif()
 #------------------------------------------------------------------------------
 add_library( freertos_plus_tcp_network_if STATIC )
 
@@ -12,6 +15,11 @@ target_sources( freertos_plus_tcp_network_if
   PRIVATE
     MBuffNetifBackendLibslirp.c
     MBuffNetworkInterface.c
+)
+
+target_include_directories( freertos_plus_tcp_network_if
+  PRIVATE
+  ${LIBSLIRP_INCLUDE_DIRS}
 )
 
 target_link_libraries(freertos_plus_tcp_network_if

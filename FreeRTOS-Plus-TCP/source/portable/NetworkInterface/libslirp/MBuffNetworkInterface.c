@@ -401,3 +401,12 @@ NetworkInterface_t * pxLibslirp_FillInterfaceDescriptor( BaseType_t xEMACIndex,
 
     return pxInterface;
 }
+
+extern void vMBuffNetifFwd(void * pvBackendContext);
+BaseType_t xMyPortFwd(
+    NetworkInterface_t* pxInterface
+)
+{
+    MBuffNetDriverContext_t* pxDriveCtx = (MBuffNetDriverContext_t*) pxInterface->pvArgument;
+    vMBuffNetifFwd(pxDriveCtx->pvBackendContext);
+}

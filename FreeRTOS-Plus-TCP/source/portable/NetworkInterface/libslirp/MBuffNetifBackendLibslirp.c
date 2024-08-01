@@ -925,3 +925,16 @@ static void vSlirp_Notify( void * pvOpaque )
         ( void ) pvOpaque;
     }
 #endif /* SLIRP_CHECK_VERSION( 4U, 7U, 0U ) */
+
+void vMBuffNetifFwd(void * pvBackendContext)
+{
+    SlirpBackendContext_t * pxCtx = NULL;
+
+    if (pvBackendContext != NULL) {
+        pxCtx = ( SlirpBackendContext_t *) pvBackendContext;
+        struct in_addr host = {.s_addr = FreeRTOS_inet_addr_quick( 0, 0, 0, 0)};
+        struct in_addr guest = {.s_addr = FreeRTOS_inet_addr_quick(10U, 0U, 2U, 15U)};
+
+        slirp_add_hostfwd(pxCtx->pxSlirp, 0, host, 7, guest, 7);
+    }
+}

@@ -106,13 +106,13 @@
 /* configMAX_PRIORITIES Sets the number of available task priorities.  Tasks can
  * be assigned priorities of 0 to (configMAX_PRIORITIES - 1).  Zero is the lowest
  * priority. */
-#define configMAX_PRIORITIES 64
+#define configMAX_PRIORITIES 7
 
 /* configMINIMAL_STACK_SIZE defines the size of the stack used by the Idle task
  * (in words, not in bytes!).  The kernel does not use this constant for any other
  * purpose.  Demo applications use the constant to make the demos somewhat portable
  * across hardware architectures. */
-#define configMINIMAL_STACK_SIZE (16 * 1024)
+#define configMINIMAL_STACK_SIZE (8 * 1024)
 
 /* configMAX_TASK_NAME_LEN sets the maximum length (in characters) of a task's
  * human readable name.  Includes the NULL terminator. */
@@ -280,7 +280,7 @@
  * or heap_4.c are included in the build.  This value is defaulted to 4096 bytes but
  * it must be tailored to each application.  Note the heap will appear in the .bss
  * section.  See https://www.freertos.org/a00111.html. */
-#define configTOTAL_HEAP_SIZE 4096
+#define configTOTAL_HEAP_SIZE (128*1024*1024)
 
 /* Set configAPPLICATION_ALLOCATED_HEAP to 1 to have the application allocate
  * the array used as the FreeRTOS heap.  Set to 0 to have the linker allocate the
@@ -642,5 +642,45 @@
 #define INCLUDE_xTaskAbortDelay             0
 #define INCLUDE_xTaskGetHandle              0
 #define INCLUDE_xTaskResumeFromISR          1
+
+/*
+ * for FreeRTOS-Plus-TCP
+ */
+#define configMAC_ISR_SIMULATOR_PRIORITY (configMAX_PRIORITIES - 1)
+#define configNETWORK_INTERFACE_TO_USE   1L
+
+#define configECHO_SERVER_ADDR0 127
+#define configECHO_SERVER_ADDR1 0
+#define configECHO_SERVER_ADDR2 0
+#define configECHO_SERVER_ADDR3 1
+
+#define configMAC_ADDR0 0x00
+#define configMAC_ADDR1 0x11
+#define configMAC_ADDR2 0x22
+#define configMAC_ADDR3 0x33
+#define configMAC_ADDR4 0x44
+#define configMAC_ADDR5 0x41
+
+#define configIP_ADDR0 172
+#define configIP_ADDR1 19
+#define configIP_ADDR2 195
+#define configIP_ADDR3 37
+
+#define configGATEWAY_ADDR0 172
+#define configGATEWAY_ADDR1 19
+#define configGATEWAY_ADDR2 192
+#define configGATEWAY_ADDR3 1
+
+#define configDNS_SERVER_ADDR0 10
+#define configDNS_SERVER_ADDR1 4
+#define configDNS_SERVER_ADDR2 4
+#define configDNS_SERVER_ADDR3 10
+
+#define configNET_MASK0 255
+#define configNET_MASK1 255
+#define configNET_MASK2 240
+#define configNET_MASK3 0
+
+#define configKERNEL_PROVIDED_STATIC_MEMORY 1
 
 #endif /* FREERTOS_CONFIG_H */
