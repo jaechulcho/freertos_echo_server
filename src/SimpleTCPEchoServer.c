@@ -202,13 +202,12 @@ static void prvConnectionListeningTask(void* pvParameters)
     configASSERT(xConnectedSocket != FREERTOS_INVALID_SOCKET);
 
     /* Spawn a task to handle the connection. */
-    xTaskCreateStatic(prvServerConnectionInstance,
+    xTaskCreate(prvServerConnectionInstance,
         "EchoServer",
         PTHREAD_STACK_MIN,
         (void*)xConnectedSocket,
         tskIDLE_PRIORITY,
-        echoServerTaskStack,
-        &echoServerTaskBuffer);
+        NULL);
   }
 }
 /*-----------------------------------------------------------*/

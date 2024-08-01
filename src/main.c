@@ -146,7 +146,7 @@ void vApplicationIdleHook(void)
    * because it is the responsibility of the idle task to clean up memory
    * allocated by the kernel to any task that has since deleted itself. */
 
-  usleep(15000);
+  usleep(15);
 }
 /*-----------------------------------------------------------*/
 
